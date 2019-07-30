@@ -1,0 +1,30 @@
+version: '2.1'
+
+services:
+  redis:
+    image: redis
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_DATABASE=finddoc
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", '-p"root"']
+      timeout: 20s
+      retries: 10
+  exchange-rate-service:
+    build: ./exchange_rate_service
+    volumes:
+      - ./exchange_rate_service/:/app
+    ports:
+      - 3000:3000
+    links:
+      - redis:redis
+      - db:db
+    depends_on:
+      db:
+        condition: service_healthy
