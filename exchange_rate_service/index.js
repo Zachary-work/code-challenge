@@ -1,5 +1,9 @@
 import express from 'express';
 import cors from 'cors';
+import SocketIO from 'socket.io';
+import redisAdapter from 'socket.io-redis';
+
+import Socket from './socket';
 
 let app = express();
 
@@ -12,3 +16,6 @@ app.get('/', (req, res) => {
 let server = app.listen(3000, () => {
     console.log('App running');
 });
+
+//Setup Socket.IO
+Socket.init(server);
