@@ -39,7 +39,8 @@ new CronJob('* * * * * *', async () => {
         const trx = await knex.transaction();
         try {
             await redis.setAsync(`er_${ticker.base}-${ticker.target}`, JSON.stringify(ticker))
-            await redis.publishAsync(`erc_${ticker.base}-${ticker.target}`, JSON.stringify(ticker));
+            //publish exchange rate update in redis channel - er_update [exchange rate update]
+            await redis.publishAsync(`er_update`, JSON.stringify(ticker));
             await job.update(trx, updated_on.add(30, 's'));
             await exchange_rate.insert(trx);
             console.log(`${ticker.base}-${ticker.target} updated on ${current.toISOString()}: current price: ${ticker.price}`)
