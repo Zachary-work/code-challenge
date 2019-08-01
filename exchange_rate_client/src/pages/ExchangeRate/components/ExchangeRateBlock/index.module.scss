@@ -1,0 +1,42 @@
+.card{
+    width: 300px;
+    display: inline-block;
+    margin: 10px 20px;
+}
+
+.card_title{
+    color: #8a2387;
+}
+
+.price{
+    color: #f27121;
+}
+
+.sub_info{
+    display: flex;
+    justify-content: space-between;
+}
+
+.subblock{
+    display: inline-block;
+    margin-right: 20px;
+    min-width: 100px;
+    overflow: hidden;
+}
+
+.positive{
+    color: green;
+}
+
+.negative{
+    color: red;
+}
+
+@media only screen and (max-width: 1000px) {
+    .card{
+        width: -webkit-fill-available;
+    }
+    .subblock{
+        min-width: 30vw;
+    }
+  }
