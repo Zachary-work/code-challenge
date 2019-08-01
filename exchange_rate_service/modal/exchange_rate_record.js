@@ -12,6 +12,7 @@ class ExchangeRateRecord {
     }
 
     static async getExchangeList(target){
+        //getting cache from redis
         let cache_list = await cache.getAsync('er_list');
         if(!empty(cache_list)){
             return JSON.parse(cache_list);
@@ -25,6 +26,7 @@ class ExchangeRateRecord {
                 target: _job.target,
             };
         });
+        //cache will expire every 60 seconds, so it can update the list
         await cache.setAsync('er_list', JSON.stringify(list), 'EX', 60);
         return list;
     }
