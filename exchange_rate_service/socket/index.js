@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import knex from '../config/knex';
-import redis from '../config/redis';
+import subscribe from '../config/subscribe';
 
 const init = async ( server ) => {
     const io = SocketIO.listen(server);
@@ -21,9 +21,9 @@ const init = async ( server ) => {
     namespaces = new Map(namespaces);
     
     //subscribe to redis in order to know if there is a currency update in background cron service
-    redis.subscribe('er_update');
+    subscribe.subscribe('er_update');
 
-    redis.on('message', (channel, ticker) => {
+    subscribe.on('message', (channel, ticker) => {
         ticker = JSON.parse(ticker);
         let namespace = namespaces.get(ticker.target.toLowerCase());
         namespace.emit('exchange_rate_update', JSON.stringify(ticker));
