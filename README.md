@@ -30,7 +30,7 @@ This component responsible for communicating with Reactjs Client, using RESTful 
 ### background-cron-service
 This component responsible for grabbing data from Cryto API. Once received a new exchange rate update, it will update Redis cache and MySQL database. Then, publishing a notification to Redis channel, so that exchange rate service will know there is an update.
 
-The reason to seperate this script from exchange rate service is that this service should be scale with the exchange rate service.
+The reason to seperate this script from exchange rate service is that this service shouldn't be scale with the exchange rate service.
 
 ### ReactJS Client
 It is a ReactJS Client to connect to the exchange rate service. It will subscribe to exchange rate service websocket. Therefore, it will be able to update the exchange rate information in real time.
