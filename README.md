@@ -6,10 +6,16 @@ Run the following command to start the service
     docker-compose up
 
 Goto: [http://localhost/#/exchange_rate](http://localhost/#/exchange_rate)
-Have fun :)
+Have fun :)  
+
+## Naming Convention
+
+For variable and filename, I use under_score.
+For function and class name, I use CamelCase.
 
 ## Overall Design
 ![enter image description here](https://lh3.googleusercontent.com/06QJQQUYeoDSjAyKBZlnzn86S-Bf2nRfPwt-OsztaxlpCQmpQsVvQqQlKxvLNp6oDARReMvEtENg "System Design")  
+
 The main components of this sytem including:
 
  1. exchange-rate-service
@@ -37,4 +43,8 @@ Using Redis in this system for the following reasons:
  3. Using as a socket index table, for websocket scaling. For details: [socket.io-redis](https://github.com/socketio/socket.io-redis)
 
 ### MySQL
-Just a database :)
+There are 3 tables for database
+
+1. exchange_rates - for storing the ticker data from crypto API
+2. exchange_rate_job - for storing the scheduled job to grab dat from crypto API
+3. currencies - storing the code and the corrdsponding currency name, including crypto currency and physical currency
