@@ -1,6 +1,6 @@
 import React from 'react';
 import empty from 'is-empty';
-import { Container, Card, CardActions, CardContent, Button, Typography } from '@material-ui/core';
+import { Card, CardContent, Typography } from '@material-ui/core';
 import FadeIn from 'react-fade-in';
 
 import ReactPlaceholder from 'react-placeholder';

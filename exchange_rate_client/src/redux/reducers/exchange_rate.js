@@ -13,7 +13,6 @@ const reducer = (state = initialState, action) => {
             let update_index = state.get('exchange_rates').findIndex((_rate) => {
                 return _rate.get('base') === action.payload.base && _rate.get('target') === action.payload.target;
             });
-            console.log(update_index);
             return state.setIn(['exchange_rates', update_index], fromJS(action.payload));
         }
         default: {

@@ -38,3 +38,12 @@ services:
     depends_on:
       db:
         condition: service_healthy
+  exchange-rate-client:
+    build: ./exchange_rate_client
+    volumes:
+      - ./exchange_rate_client/:/app
+    ports:
+      - 80:5000
+    depends_on:
+      - exchange-rate-service
+      - background-cron-service
