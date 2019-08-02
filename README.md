@@ -9,7 +9,7 @@ Goto: [http://localhost/#/exchange_rate](http://localhost/#/exchange_rate)
 Have fun :)
 
 ## Overall Design
-![enter image description here](https://lh3.googleusercontent.com/06QJQQUYeoDSjAyKBZlnzn86S-Bf2nRfPwt-OsztaxlpCQmpQsVvQqQlKxvLNp6oDARReMvEtENg "System Design")
+![enter image description here](https://lh3.googleusercontent.com/06QJQQUYeoDSjAyKBZlnzn86S-Bf2nRfPwt-OsztaxlpCQmpQsVvQqQlKxvLNp6oDARReMvEtENg "System Design")  
 The main components of this sytem including:
 
  1. exchange-rate-service
