@@ -10,7 +10,7 @@ class Job {
     }
 
     isScheduledOn(query_time) {
-        return this.scheduled_on.isBefore(query_time);
+        return this.scheduled_on.isSameOrBefore(query_time);
     }
 
     isSameJob(query_time){
