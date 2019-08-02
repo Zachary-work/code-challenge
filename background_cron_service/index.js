@@ -38,6 +38,7 @@ new CronJob('* * * * * *', async () => {
 
         const trx = await knex.transaction();
         try {
+            //Setting cache to the latest exchange rate
             await redis.setAsync(`er_${ticker.base.toLowerCase()}-${ticker.target.toLowerCase()}`, JSON.stringify(ticker))
             //publish exchange rate update in redis channel - er_update [exchange rate update]
             await redis.publishAsync(`er_update`, JSON.stringify(ticker));
