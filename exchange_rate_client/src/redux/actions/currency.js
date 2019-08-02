@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from '../../config/axios';
 
 export const getCurrencies = () => {
     return {
         type: "FETCH_CURRENCIES",
-        payload: axios('http://localhost:3000/currencies/all'),
+        payload: axios.get('/currencies/all'),
     }
 }

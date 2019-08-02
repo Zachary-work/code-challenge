@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from '../../config/axios';
 
 export const getExchangeRate = () => {
     return {
         type: "FETCH_EXCHANGE_RATE",
-        payload: axios('http://localhost:3000/exchange_rate/usd'),
+        payload: axios.get('/exchange_rate/usd'),
     }
 }
 

@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import io from 'socket.io-client';
 import empty from 'is-empty';
-import ReactPlaceholder from 'react-placeholder';
 
-import { Container, Card, CardActions, CardContent, Button, Typography } from '@material-ui/core'
+import { Container, Typography } from '@material-ui/core'
 
 import styles from './index.module.scss';
 
@@ -21,12 +20,10 @@ class ExchangeRate extends React.Component {
     componentDidMount() {
         this.props.getCurrencies();
         this.props.getExchangeRate();
-        const socket = io('http://localhost:3000/usd');
+        const socket = io(`${process.env.REACT_APP_EXCHANGE_SER_HOST}/usd`);
         socket.on('exchange_rate_update', (data) => {
-            console.log(data);
             this.props.updateExchangeRate(JSON.parse(data));
         })
-        console.log(this.props.exchange_rates);
     }
 
     render() {
@@ -41,7 +38,7 @@ class ExchangeRate extends React.Component {
                             });
                             base_currency = (empty(base_currency)) ? null : base_currency.name
                             return (
-                                <ExchangeRateBlock ready={!empty(base_currency)} currency={base_currency} price={_rate.price} volume={_rate.volume} change = {_rate.change}/>
+                                <ExchangeRateBlock key={`${_rate.base}-${_rate.price}-${_rate.volume}-${_rate.change}`} ready={!empty(base_currency)} currency={base_currency} price={_rate.price} volume={_rate.volume} change = {_rate.change}/>
                             )
                         })
                     }
